@@ -6,7 +6,6 @@ import com.example.FootballManager_front_end.DTO.request.RegisterRequest;
 import com.example.FootballManager_front_end.DTO.response.AuthenticationResponse;
 import com.example.FootballManager_front_end.auth.AuthClient;
 import feign.FeignException;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,24 +30,25 @@ public class AuthController {
     private static final String AUTH_HEADER = "Bearer ";
     private static final String USERS = "users";
     private static final String USER_REGISTER_FILE = "/user/register";
+    private static final String REGISTER_REQUEST = "registerRequest";
 
     @GetMapping("/register")
     public String createUser(Model model) {
-        model.addAttribute("registerRequest", new RegisterRequest());
+        model.addAttribute(REGISTER_REQUEST, new RegisterRequest());
         return USER_REGISTER_FILE;
     }
 
     @PostMapping("/register")
     public String registerUser(@Valid RegisterRequest request, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("registerRequest", new RegisterRequest());
+            model.addAttribute(REGISTER_REQUEST, new RegisterRequest());
             return USER_REGISTER_FILE;
         }
         try {
             authClient.register(request);
         } catch (FeignException e) {
             if (e.status() == 400) {
-                model.addAttribute("registerRequest", new RegisterRequest());
+                model.addAttribute(REGISTER_REQUEST, new RegisterRequest());
                 model.addAttribute("errorMessage", "User with such email already exists!");
                 return USER_REGISTER_FILE;
             }
@@ -79,14 +79,22 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        return "redirect:/index";
+    public String logout(HttpSession session) {
+        session.removeAttribute(SESSION_NAME);
+        return "redirect:/";
     }
 
     @GetMapping("/get-info")
-    public String userInfo(Model model, HttpSession session) {
-        String token = (String) session.getAttribute(SESSION_NAME);
-        model.addAttribute("userDTO", authClient.getUserInfo(AUTH_HEADER + token).getBody());
+    public String userInfo(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        try {
+            String token = (String) session.getAttribute(SESSION_NAME);
+            model.addAttribute("userDTO", authClient.getUserInfo(AUTH_HEADER + token).getBody());
+        } catch (FeignException exception) {
+            if (exception.status() == 401) {
+                redirectAttributes.addFlashAttribute("errorMessage", "You must log in!");
+                return "redirect:/";
+            }
+        }
         return "/user/me";
     }
 }
