@@ -22,4 +22,7 @@ public interface AuthClient {
 
     @GetMapping("/get-info")
     ResponseEntity<UserDTO> getUserInfo(@RequestHeader("Authorization") String token);
+
+    @GetMapping("/logout")
+    void logout(@RequestHeader("Authorization") String auth);
 }

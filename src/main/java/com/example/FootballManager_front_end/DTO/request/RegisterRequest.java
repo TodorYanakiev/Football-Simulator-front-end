@@ -14,9 +14,13 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 public class RegisterRequest {
 
-    @NotBlank(message = "Full name cannot be empty!")
-    @Length(min = 2, message = "Full name should be at least than 2 characters long!")
-    private String fullName;
+    @NotBlank(message = "First name cannot be empty!")
+    @Length(min = 2, message = "First name should be at least than 2 characters long!")
+    private String firstName;
+
+    @NotBlank(message = "Last name cannot be empty!")
+    @Length(min = 2, message = "Last name should be at least than 2 characters long!")
+    private String lastName;
 
     @NotBlank(message = "Email cannot be empty!")
     @Email(message = "Please enter a valid email address!")
