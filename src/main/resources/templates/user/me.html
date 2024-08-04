@@ -10,10 +10,7 @@
 <p th:text="'Password: ' + (${userDTO != null && userDTO.password != null} ? ${userDTO.password} : '')"></p>
 <p th:text="'Username: ' + (${userDTO != null && userDTO.username != null} ? ${userDTO.username} : '')"></p>
 <p th:text="'Email: ' + (${userDTO != null && userDTO.email != null} ? ${userDTO.email} : '')"></p>
-<!--<p th:text="'Name: ' + ${userDTO.name}"></p>-->
-<!--<p th:text="'Last name: '${userDTO.lastName}"></p>-->
-<!--<p th:text="'Password: '${userDTO.password}"></p>-->
-<!--<p th:text="'Username: '${userDTO.username}"></p>-->
-<!--<p th:text="'Email: '${userDTO.email}"></p>-->
+
+<a th:href="@{/auth/logout}">Logout</a>
 </body>
 </html>

@@ -3,10 +3,12 @@ package com.example.FootballManager_front_end.DTO;
 import com.example.FootballManager_front_end.Enum.Role;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     private Long id;
     private String name;
