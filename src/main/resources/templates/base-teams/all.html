@@ -18,6 +18,7 @@
             <th>Abbreviation</th>
             <th>Stadium Name</th>
             <th>Start Budget</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
             <td th:text="${baseTeamDTO.abbreviation}"></td>
             <td th:text="${baseTeamDTO.stadiumName}"></td>
             <td th:text="${baseTeamDTO.startBudget}"></td>
+            <td> <a th:href="@{/base-teams/update/{id}(id=${baseTeamDTO.id})}">Update</a></td>
         </tr>
         </tbody>
     </table>

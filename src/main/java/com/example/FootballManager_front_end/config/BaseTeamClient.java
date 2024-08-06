@@ -21,9 +21,9 @@ public interface BaseTeamClient {
     ResponseEntity<BaseTeamDTO> getBaseTeamById(@RequestHeader("Authorization") String token, @PathVariable Long id);
 
     @PutMapping("/{id}")
-    ResponseEntity<BaseTeamDTO> updateBaseTeamById(@RequestHeader("Authorization") String token, @PathVariable Long id
+    ResponseEntity<BaseTeamDTO> updateBaseTeam(@RequestHeader("Authorization") String token, @PathVariable Long id
             , @Valid @RequestBody BaseTeamDTO newBaseTeamDTO);
 
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteBaseTeamById(@RequestHeader("Authorization") String token, @PathVariable Long id);
+    ResponseEntity<String> deleteBaseTeam(@RequestHeader("Authorization") String token, @PathVariable Long id);
 }
