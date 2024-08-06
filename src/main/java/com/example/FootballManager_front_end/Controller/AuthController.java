@@ -4,7 +4,7 @@ import com.example.FootballManager_front_end.DTO.UserDTO;
 import com.example.FootballManager_front_end.DTO.request.AuthenticationRequest;
 import com.example.FootballManager_front_end.DTO.request.RegisterRequest;
 import com.example.FootballManager_front_end.DTO.response.AuthenticationResponse;
-import com.example.FootballManager_front_end.auth.AuthClient;
+import com.example.FootballManager_front_end.config.AuthClient;
 import feign.FeignException;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -31,6 +31,7 @@ public class AuthController {
     private static final String USERS = "users";
     private static final String USER_REGISTER_FILE = "/user/register";
     private static final String REGISTER_REQUEST = "registerRequest";
+    private static final String ERROR_MESSAGE = "errorMessage";
 
     @GetMapping("/register")
     public String createUser(Model model) {
@@ -49,7 +50,7 @@ public class AuthController {
         } catch (FeignException e) {
             if (e.status() == 400) {
                 model.addAttribute(REGISTER_REQUEST, new RegisterRequest());
-                model.addAttribute("errorMessage", "User with such email already exists!");
+                model.addAttribute(ERROR_MESSAGE, "User with such email already exists!");
                 return USER_REGISTER_FILE;
             }
         }
@@ -73,7 +74,7 @@ public class AuthController {
             session.setAttribute("info", userDTO.getBody());
             return "redirect:/auth/get-info";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Invalid credentials or error");
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Invalid credentials or error");
             return "redirect:/auth/login";
         }
     }
@@ -91,7 +92,7 @@ public class AuthController {
             model.addAttribute("userDTO", authClient.getUserInfo(AUTH_HEADER + token).getBody());
         } catch (FeignException exception) {
             if (exception.status() == 401) {
-                redirectAttributes.addFlashAttribute("errorMessage", "You must log in!");
+                redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "You must log in!");
                 return "redirect:/";
             }
         }

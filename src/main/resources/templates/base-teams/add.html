@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Base Team</title>
+</head>
+<body>
+<div>
+    <h2>Add Base Team</h2>
+    <form th:action="@{/base-teams/add}" th:object="${baseTeamDTO}" method="post">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+        </div>
+        <div>
+            <label for="abbreviation">Abbreviation</label>
+            <input type="text" id="abbreviation" th:field="*{abbreviation}" />
+            <p th:if="${#fields.hasErrors('abbreviation')}" th:errors="*{abbreviation}">Abbreviation Error</p>
+        </div>
+        <div>
+            <label for="stadiumName">Stadium Name</label>
+            <input type="text" id="stadiumName" th:field="*{stadiumName}" />
+            <p th:if="${#fields.hasErrors('stadiumName')}" th:errors="*{stadiumName}">Stadium Name Error</p>
+        </div>
+        <div>
+            <label for="startBudget">Start Budget</label>
+            <input type="text" id="startBudget" th:field="*{startBudget}" />
+            <p th:if="${#fields.hasErrors('startBudget')}" th:errors="*{startBudget}">Start Budget Error</p>
+        </div>
+        <div>
+            <button type="submit">Add Team</button>
+        </div>
+    </form>
+    <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}"></p>
+    </div>
+</div>
+</body>
+</html>
