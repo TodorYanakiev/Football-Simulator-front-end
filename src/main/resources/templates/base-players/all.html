@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All Base Football Players</title>
+</head>
+<body>
+<div>
+    <h2>All Base Players</h2>
+    <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}" style="color: red;"></p>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Nationality</th>
+            <th>Age</th>
+            <th>Shirt Number</th>
+            <th>Position</th>
+            <th>Defending</th>
+            <th>Speed</th>
+            <th>Dribble</th>
+            <th>Scoring</th>
+            <th>Passing</th>
+            <th>Stamina</th>
+            <th>Positioning</th>
+            <th>Goalkeeping</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="basePlayerDTO : ${basePlayersDTOList}">
+            <td th:text="${basePlayerDTO.id}"></td>
+            <td th:text="${basePlayerDTO.firstName}"></td>
+            <td th:text="${basePlayerDTO.lastName}"></td>
+            <td th:text="${basePlayerDTO.nationality}"></td>
+            <td th:text="${basePlayerDTO.age}"></td>
+            <td th:text="${basePlayerDTO.shirtNumber}"></td>
+            <td th:text="${basePlayerDTO.position}"></td>
+            <td th:text="${basePlayerDTO.startDefending}"></td>
+            <td th:text="${basePlayerDTO.startSpeed}"></td>
+            <td th:text="${basePlayerDTO.startDribble}"></td>
+            <td th:text="${basePlayerDTO.startScoring}"></td>
+            <td th:text="${basePlayerDTO.startPassing}"></td>
+            <td th:text="${basePlayerDTO.startStamina}"></td>
+            <td th:text="${basePlayerDTO.startPositioning}"></td>
+            <td th:text="${basePlayerDTO.startGoalkeeping}"></td>
+            <td> <a th:href="@{/base-players/update/{id}(id=${basePlayerDTO.id})}">Update</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<footer th:insert="fragments/footer.html ::footer"></footer>
+</html>
