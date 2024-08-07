@@ -10,40 +10,37 @@
 <div class="container mt-5">
     <h2 class="mb-4">Update Base Football Player</h2>
     <form th:action="@{/base-players/update/{id}(id=${basePlayerDTO.id})}" th:object="${basePlayerDTO}" method="post">
-        <!-- First Row of Form Fields -->
         <div class="row">
             <div class="col-md-6 form-group">
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" th:field="*{firstName}" class="form-control" />
-                <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</p>
+                <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger">First Name Error</p>
             </div>
             <div class="col-md-6 form-group">
                 <label for="lastName">Last Name</label>
                 <input type="text" id="lastName" th:field="*{lastName}" class="form-control" />
-                <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</p>
+                <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger">Last Name Error</p>
             </div>
         </div>
 
-        <!-- Second Row of Form Fields -->
         <div class="row">
             <div class="col-md-6 form-group">
                 <label for="nationality">Nationality</label>
                 <input type="text" id="nationality" th:field="*{nationality}" class="form-control" />
-                <p th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}">Nationality Error</p>
+                <p th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}" class="text-danger">Nationality Error</p>
             </div>
             <div class="col-md-6 form-group">
                 <label for="age">Age</label>
                 <input type="number" id="age" th:field="*{age}" class="form-control" />
-                <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</p>
+                <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="text-danger">Age Error</p>
             </div>
         </div>
 
-        <!-- Third Row of Form Fields -->
         <div class="row">
             <div class="col-md-6 form-group">
                 <label for="shirtNumber">Shirt Number</label>
                 <input type="text" id="shirtNumber" th:field="*{shirtNumber}" class="form-control" />
-                <p th:if="${#fields.hasErrors('shirtNumber')}" th:errors="*{shirtNumber}">Shirt Number Error</p>
+                <p th:if="${#fields.hasErrors('shirtNumber')}" th:errors="*{shirtNumber}" class="text-danger">Shirt Number Error</p>
             </div>
             <div class="col-md-6 form-group">
                 <label for="position">Position</label>
@@ -51,66 +48,61 @@
                     <option th:each="pos : ${T(com.example.FootballManager_front_end.Enum.Position).values()}"
                             th:value="${pos}" th:text="${pos}">Position</option>
                 </select>
-                <p th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position Error</p>
+                <p th:if="${#fields.hasErrors('position')}" th:errors="*{position}" class="text-danger">Position Error</p>
             </div>
         </div>
 
-        <!-- Fourth Row of Form Fields (Four Fields per Row) -->
         <div class="row">
             <div class="col-md-3 form-group">
                 <label for="startDefending">Defending</label>
                 <input type="number" id="startDefending" th:field="*{startDefending}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startDefending')}" th:errors="*{startDefending}">Defending Error</p>
+                <p th:if="${#fields.hasErrors('startDefending')}" th:errors="*{startDefending}" class="text-danger">Defending Error</p>
             </div>
             <div class="col-md-3 form-group">
                 <label for="startSpeed">Speed</label>
                 <input type="number" id="startSpeed" th:field="*{startSpeed}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startSpeed')}" th:errors="*{startSpeed}">Speed Error</p>
+                <p th:if="${#fields.hasErrors('startSpeed')}" th:errors="*{startSpeed}" class="text-danger">Speed Error</p>
             </div>
             <div class="col-md-3 form-group">
                 <label for="startDribble">Dribble</label>
                 <input type="number" id="startDribble" th:field="*{startDribble}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startDribble')}" th:errors="*{startDribble}">Dribble Error</p>
+                <p th:if="${#fields.hasErrors('startDribble')}" th:errors="*{startDribble}" class="text-danger">Dribble Error</p>
             </div>
             <div class="col-md-3 form-group">
                 <label for="startScoring">Scoring</label>
                 <input type="number" id="startScoring" th:field="*{startScoring}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startScoring')}" th:errors="*{startScoring}">Scoring Error</p>
+                <p th:if="${#fields.hasErrors('startScoring')}" th:errors="*{startScoring}" class="text-danger">Scoring Error</p>
             </div>
         </div>
 
-        <!-- Fifth Row of Form Fields (Four Fields per Row) -->
         <div class="row">
             <div class="col-md-3 form-group">
                 <label for="startPassing">Passing</label>
                 <input type="number" id="startPassing" th:field="*{startPassing}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startPassing')}" th:errors="*{startPassing}">Passing Error</p>
+                <p th:if="${#fields.hasErrors('startPassing')}" th:errors="*{startPassing}" class="text-danger">Passing Error</p>
             </div>
             <div class="col-md-3 form-group">
                 <label for="startStamina">Stamina</label>
                 <input type="number" id="startStamina" th:field="*{startStamina}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startStamina')}" th:errors="*{startStamina}">Stamina Error</p>
+                <p th:if="${#fields.hasErrors('startStamina')}" th:errors="*{startStamina}" class="text-danger">Stamina Error</p>
             </div>
             <div class="col-md-3 form-group">
                 <label for="startPositioning">Positioning</label>
                 <input type="number" id="startPositioning" th:field="*{startPositioning}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startPositioning')}" th:errors="*{startPositioning}">Positioning Error</p>
+                <p th:if="${#fields.hasErrors('startPositioning')}" th:errors="*{startPositioning}" class="text-danger">Positioning Error</p>
             </div>
             <div class="col-md-3 form-group">
                 <label for="startGoalkeeping">Goalkeeping</label>
                 <input type="number" id="startGoalkeeping" th:field="*{startGoalkeeping}" class="form-control" />
-                <p th:if="${#fields.hasErrors('startGoalkeeping')}" th:errors="*{startGoalkeeping}">Goalkeeping Error</p>
+                <p th:if="${#fields.hasErrors('startGoalkeeping')}" th:errors="*{startGoalkeeping}" class="text-danger">Goalkeeping Error</p>
             </div>
         </div>
 
-        <!-- Button Container -->
         <div class="form-group mt-3">
             <div class="row">
-                <!-- Back Button -->
                 <div class="col-auto">
                     <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
                 </div>
-                <!-- Update Player Button -->
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary">Update Player</button>
                 </div>
