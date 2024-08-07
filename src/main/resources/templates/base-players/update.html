@@ -1,94 +1,132 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Base Football Player</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    <h2>Update Base Football Player</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Update Base Football Player</h2>
     <form th:action="@{/base-players/update/{id}(id=${basePlayerDTO.id})}" th:object="${basePlayerDTO}" method="post">
-        <div>
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" th:field="*{firstName}" />
-            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</p>
+        <!-- First Row of Form Fields -->
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" th:field="*{firstName}" class="form-control" />
+                <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" th:field="*{lastName}" class="form-control" />
+                <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</p>
+            </div>
         </div>
-        <div>
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" th:field="*{lastName}" />
-            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</p>
+
+        <!-- Second Row of Form Fields -->
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="nationality">Nationality</label>
+                <input type="text" id="nationality" th:field="*{nationality}" class="form-control" />
+                <p th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}">Nationality Error</p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" th:field="*{age}" class="form-control" />
+                <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</p>
+            </div>
         </div>
-        <div>
-            <label for="nationality">Nationality</label>
-            <input type="text" id="nationality" th:field="*{nationality}" />
-            <p th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}">Nationality Error</p>
+
+        <!-- Third Row of Form Fields -->
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="shirtNumber">Shirt Number</label>
+                <input type="text" id="shirtNumber" th:field="*{shirtNumber}" class="form-control" />
+                <p th:if="${#fields.hasErrors('shirtNumber')}" th:errors="*{shirtNumber}">Shirt Number Error</p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="position">Position</label>
+                <select id="position" th:field="*{position}" class="form-control">
+                    <option th:each="pos : ${T(com.example.FootballManager_front_end.Enum.Position).values()}"
+                            th:value="${pos}" th:text="${pos}">Position</option>
+                </select>
+                <p th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position Error</p>
+            </div>
         </div>
-        <div>
-            <label for="age">Age</label>
-            <input type="text" id="age" th:field="*{age}" />
-            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</p>
+
+        <!-- Fourth Row of Form Fields (Four Fields per Row) -->
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <label for="startDefending">Defending</label>
+                <input type="number" id="startDefending" th:field="*{startDefending}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startDefending')}" th:errors="*{startDefending}">Defending Error</p>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="startSpeed">Speed</label>
+                <input type="number" id="startSpeed" th:field="*{startSpeed}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startSpeed')}" th:errors="*{startSpeed}">Speed Error</p>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="startDribble">Dribble</label>
+                <input type="number" id="startDribble" th:field="*{startDribble}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startDribble')}" th:errors="*{startDribble}">Dribble Error</p>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="startScoring">Scoring</label>
+                <input type="number" id="startScoring" th:field="*{startScoring}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startScoring')}" th:errors="*{startScoring}">Scoring Error</p>
+            </div>
         </div>
-        <div>
-            <label for="shirtNumber">Shirt Number</label>
-            <input type="text" id="shirtNumber" th:field="*{shirtNumber}" />
-            <p th:if="${#fields.hasErrors('shirtNumber')}" th:errors="*{shirtNumber}">Shirt Number Error</p>
+
+        <!-- Fifth Row of Form Fields (Four Fields per Row) -->
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <label for="startPassing">Passing</label>
+                <input type="number" id="startPassing" th:field="*{startPassing}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startPassing')}" th:errors="*{startPassing}">Passing Error</p>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="startStamina">Stamina</label>
+                <input type="number" id="startStamina" th:field="*{startStamina}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startStamina')}" th:errors="*{startStamina}">Stamina Error</p>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="startPositioning">Positioning</label>
+                <input type="number" id="startPositioning" th:field="*{startPositioning}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startPositioning')}" th:errors="*{startPositioning}">Positioning Error</p>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="startGoalkeeping">Goalkeeping</label>
+                <input type="number" id="startGoalkeeping" th:field="*{startGoalkeeping}" class="form-control" />
+                <p th:if="${#fields.hasErrors('startGoalkeeping')}" th:errors="*{startGoalkeeping}">Goalkeeping Error</p>
+            </div>
         </div>
-        <div>
-            <label for="position">Position</label>
-            <select id="position" th:field="*{position}">
-                <option th:each="pos : ${T(com.example.FootballManager_front_end.Enum.Position).values()}"
-                        th:value="${pos}"
-                        th:text="${pos}">Position</option>
-            </select>
-            <p th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position Error</p>
+
+        <!-- Button Container -->
+        <div class="form-group mt-3">
+            <div class="row">
+                <!-- Back Button -->
+                <div class="col-auto">
+                    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+                </div>
+                <!-- Update Player Button -->
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Update Player</button>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="startDefending">Defending</label>
-            <input type="text" id="startDefending" th:field="*{startDefending}" />
-            <p th:if="${#fields.hasErrors('startDefending')}" th:errors="*{startDefending}">Defending Error</p>
-        </div>
-        <div>
-            <label for="startSpeed">Speed</label>
-            <input type="text" id="startSpeed" th:field="*{startSpeed}" />
-            <p th:if="${#fields.hasErrors('startSpeed')}" th:errors="*{startSpeed}">Speed Error</p>
-        </div>
-        <div>
-            <label for="startDribble">Dribble</label>
-            <input type="text" id="startDribble" th:field="*{startDribble}" />
-            <p th:if="${#fields.hasErrors('startDribble')}" th:errors="*{startDribble}">Dribble Error</p>
-        </div>
-        <div>
-            <label for="startScoring">Scoring</label>
-            <input type="text" id="startScoring" th:field="*{startScoring}" />
-            <p th:if="${#fields.hasErrors('startScoring')}" th:errors="*{startScoring}">Scoring Error</p>
-        </div>
-        <div>
-            <label for="startPassing">Passing</label>
-            <input type="text" id="startPassing" th:field="*{startPassing}" />
-            <p th:if="${#fields.hasErrors('startPassing')}" th:errors="*{startPassing}">Passing Error</p>
-        </div>
-        <div>
-            <label for="startStamina">Stamina</label>
-            <input type="text" id="startStamina" th:field="*{startStamina}" />
-            <p th:if="${#fields.hasErrors('startStamina')}" th:errors="*{startStamina}">Stamina Error</p>
-        </div>
-        <div>
-            <label for="startPositioning">Positioning</label>
-            <input type="text" id="startPositioning" th:field="*{startPositioning}" />
-            <p th:if="${#fields.hasErrors('startPositioning')}" th:errors="*{startPositioning}">Positioning Error</p>
-        </div>
-        <div>
-            <label for="startGoalkeeping">Goalkeeping</label>
-            <input type="text" id="startGoalkeeping" th:field="*{startGoalkeeping}" />
-            <p th:if="${#fields.hasErrors('startGoalkeeping')}" th:errors="*{startGoalkeeping}">Goalkeeping Error</p>
-        </div>
-        <div>
-            <button type="submit">Update Player</button>
-        </div>
+
     </form>
-    <div th:if="${errorMessage}">
+
+    <!-- Error Message -->
+    <div th:if="${errorMessage}" class="alert alert-danger mt-4">
         <p th:text="${errorMessage}"></p>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
