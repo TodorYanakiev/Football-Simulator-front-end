@@ -10,7 +10,6 @@
 <p th:text="'Password: ' + (${userDTO != null && userDTO.password != null} ? ${userDTO.password} : '')"></p>
 <p th:text="'Username: ' + (${userDTO != null && userDTO.username != null} ? ${userDTO.username} : '')"></p>
 <p th:text="'Email: ' + (${userDTO != null && userDTO.email != null} ? ${userDTO.email} : '')"></p>
-
-<a th:href="@{/auth/logout}">Logout</a>
 </body>
+<footer th:insert="fragments/footer.html ::footer"></footer>
 </html>

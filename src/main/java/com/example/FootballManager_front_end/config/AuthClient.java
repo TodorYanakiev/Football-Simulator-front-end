@@ -1,4 +1,4 @@
-package com.example.FootballManager_front_end.auth;
+package com.example.FootballManager_front_end.config;
 
 import com.example.FootballManager_front_end.DTO.UserDTO;
 import com.example.FootballManager_front_end.DTO.request.AuthenticationRequest;

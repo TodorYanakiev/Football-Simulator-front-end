@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All base teams</title>
+</head>
+<body>
+<div>
+    <h2>All base football teams</h2>
+    <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}" style="color: red;"></p>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Abbreviation</th>
+            <th>Stadium Name</th>
+            <th>Start Budget</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="baseTeamDTO : ${baseTeamDTOList}">
+            <td th:text="${baseTeamDTO.id}"></td>
+            <td th:text="${baseTeamDTO.name}"></td>
+            <td th:text="${baseTeamDTO.abbreviation}"></td>
+            <td th:text="${baseTeamDTO.stadiumName}"></td>
+            <td th:text="${baseTeamDTO.startBudget}"></td>
+            <td> <a th:href="@{/base-teams/update/{id}(id=${baseTeamDTO.id})}">Update</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<footer th:insert="fragments/footer.html ::footer"></footer>
+</html>

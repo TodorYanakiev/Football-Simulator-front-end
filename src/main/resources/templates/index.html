@@ -9,10 +9,6 @@
         <div class="col">
             <div class="text-center">
                 <div class="mt-2">
-                    <a class="btn btn-link" th:href="@{/auth/login}"> Log in </a>
-                    <a class="btn btn-link" th:href="@{/auth/register}"> Register </a>
-                    <a th:href="@{/auth/logout}"> Logout </a>
-                    <a th:href="@{/auth/get-info}"> My account </a>
                 </div>
                 <div th:if="${errorMessage}">
                     <h2 th:text="${errorMessage}" style="color: red;"></h2>
@@ -22,4 +18,5 @@
     </div>
 </div>
 </body>
+<footer th:insert="fragments/footer.html ::footer"></footer>
 </html>
