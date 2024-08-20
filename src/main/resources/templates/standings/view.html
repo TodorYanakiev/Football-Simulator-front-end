@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${standings[0].leagueName} + ' standings'"></title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 th:text="${standings[0].leagueName}"></h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Played matches</th>
+      <th>Scored goals</th>
+      <th>Conceded goals</th>
+      <th>Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="standing, index : ${standings}">
+      <td th:text="${index.index + 1}"></td>
+      <td th:text="${standing.teamName}"></td>
+      <td th:text="${standing.playedMatches}"></td>
+      <td th:text="${standing.scoredGoals}"></td>
+      <td th:text="${standing.concededGoals}"></td>
+      <td th:text="${standing.points}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
